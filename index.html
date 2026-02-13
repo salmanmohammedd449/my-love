@@ -5,45 +5,214 @@
     <meta charset="UTF-8" />
     <title>For My Love ❤️</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <div id="musicHint" class="music-hint">
+        🎵 Tap any where to start the music
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="bg.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        window.addEventListener("click", () => {
+            const music = document.getElementById("bgMusic");
+            music.play();
+        }, { once: true });
+    </script>
+    <script>
+        const reveals = document.querySelectorAll("section");
+
+        const revealObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                }
+            });
+        }, { threshold: 0.15 });
+
+        reveals.forEach(section => {
+            section.classList.add("hidden");
+            revealObserver.observe(section);
+        });
+    </script>
+
+    <script>
+        setInterval(() => {
+            const heartsCount = 3; // number of hearts per burst
+
+            for (let i = 0; i < heartsCount; i++) {
+                const heart = document.createElement("div");
+                heart.innerText = "❤️";
+                heart.className = "heart";
+
+                // Random horizontal position
+                heart.style.left = Math.random() * 100 + "vw";
+
+                // Random size
+                const size = Math.random() * 20 + 20; // 20px – 40px
+                heart.style.fontSize = size + "px";
+
+                // Random animation duration
+                heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+
+                document.body.appendChild(heart);
+
+                setTimeout(() => heart.remove(), 8000);
+            }
+        }, 2000); // frequency
+    </script>
+
+    <script>
+        const memories = document.querySelectorAll(".memory");
+
+        const imageObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.shown) {
+                    entry.target.dataset.shown = "true";
+
+                    // create hearts
+                    for (let i = 0; i < 3; i++) {
+                        const heart = document.createElement("span");
+                        heart.innerText = "❤️";
+                        heart.className = "image-heart";
+
+                        heart.style.left = Math.random() * 60 + 20 + "%";
+                        heart.style.bottom = "20px";
+                        heart.style.fontSize = (Math.random() * 10 + 12) + "px";
+
+                        entry.target.appendChild(heart);
+                        setTimeout(() => heart.remove(), 2500);
+                    }
+                }
+            });
+        }, { threshold: 0.6 });
+
+        memories.forEach(mem => imageObserver.observe(mem));
+    </script>
+
+
+
+
 
     <section class="hero">
-        <h1>Hi My Love ❤️</h1>
-        <p>This little website is just for you</p>
+        <h1>Hi Molu ❤️</h1>
+        <p>This little world is made with all my love, just for you</p>
     </section>
 
     <section class="message">
         <h2>💌 From My Heart</h2>
         <p>
-            Every moment with you feels like magic.
+            From the very first moment I met you, life felt touched by magic.
+            That day at the café, when we both unknowingly wore the same color, it felt like destiny quietly smiling at
+            us. What
+            began as a simple meeting soon turned into endless chats and late-night calls, where every conversation made
+            me feel as
+            if we had known each other for a lifetime.
+        </p>
+        <p>
+
+            Before I knew it, those feelings led us to our Nikah — the most beautiful promise of my life. From that
+            moment on, every
+            journey has felt more meaningful with you by my side. Kodaikanal, Agra, Rajasthan, Goa — every place became
+            extraordinary because you were there. Wherever we went, you looked like a princess belonging to that land,
+            and I
+            couldn’t help but feel how incredibly lucky I am to walk beside you.
+        </p>
+        <p>
+
             You are my happiness, my peace, and my forever.
-            I’m so grateful for you, today and always 💕
+            I’m grateful for you in every moment, today and always 💕
+
         </p>
     </section>
 
     <section class="memories">
         <h2>📸 Our Memories</h2>
         <div class="gallery">
-            <img src="IMG1.JPG" />
-            <img src="IMG_2746.jpg" />
-            <img src="IMG_2766.HEIC" />
+            <div class="memory"><img src="IMG1.JPG"></div>
+            <div class="memory"><img src="IMG2.PNG"></div>
+            <div class="memory"><img src="IMG3.PNG"></div>
+            <div class="memory"><img src="IMG4.JPG"></div>
+            <div class="memory"><img src="IMG5.JPG"></div>
+            <div class="memory"><img src="IMG6.JPG"></div>
+            <div class="memory"><img src="IMG7.JPG"></div>
+            <div class="memory"><img src="IMG8.JPG"></div>
+            <div class="memory"><img src="IMG9.JPG"></div>
+            <div class="memory"><img src="IMG10.JPG"></div>
+            <div class="memory"><img src="IMG11.JPG"></div>
+            <div class="memory"><img src="IMG12.JPG"></div>
+            <div class="memory"><img src="IMG13.JPG"></div>
+            <div class="memory"><img src="IMG14.JPG"></div>
+            <div class="memory"><img src="IMG15.JPG"></div>
+            <div class="memory"><img src="IMG16.JPG"></div>
+            <div class="memory"><img src="IMG17.JPG"></div>
+            <div class="memory"><img src="IMG18.JPG"></div>
         </div>
     </section>
 
     <section class="timeline">
-        <h2>⏳ Our Journey</h2>
-        <ul>
-            <li>💖 The day we met</li>
-            <li>✨ Our first laugh together</li>
-            <li>🌍 Every beautiful memory since</li>
-        </ul>
+        <p>
+            I fell in love with you not just in the big moments, but in the quiet, ordinary ones that became
+            extraordinary because
+            of you.
+        </p>
+
+        <p>
+            I love the way we sit together over food — how you confidently order so much, yet end up eating so little,
+            smiling
+            softly as you push the rest toward me. Finishing your plate feels like a privilege, a silent promise that we
+            share even
+            the smallest things in life. Those moments, just us at a table, feel more precious to me than the fanciest
+            dinners in
+            the world.
+        </p>
+
+
+        <p>
+            Every journey with you feels like time slowed down just for us. Traveling together, watching the world pass
+            by while you
+            sit beside me, laughing, talking, dreaming — those are the moments I hold closest to my heart. Being with
+            you makes
+            every road feel warmer, every destination more meaningful.
+        </p>
+
+
+        <p>
+            And when you get angry… I know I become a little dramatic. Not because I enjoy it, but because I can’t stand
+            the
+            distance between us. I’ll joke, tease, exaggerate, do anything just to see your smile return — because your
+            happiness
+            matters more to me than my pride.
+        </p>
+
+
+        <p>
+            I adore how talkative you are. How a simple thought turns into a beautiful fifteen-mark essay, full of
+            expressions,
+            emotions, and stories. I never get tired of listening. Your words feel like home, and your voice is my
+            favorite sound.
+        </p>
+
+        <p>
+            In these little habits, these shared laughs, these tiny dramas and long conversations — I found my forever.
+            And every
+            day with you reminds me how lucky I am to love you, and to be loved by you 💕
+
+        </p>
     </section>
 
     <section class="final">
         <h2>❤️ Happy Valentine’s Day</h2>
         <p>I choose you. Always.</p>
+        <p class="signature">
+            Forever and always,<br>
+            Your kakku ❤️
+        </p>
+
     </section>
 
 </body>
