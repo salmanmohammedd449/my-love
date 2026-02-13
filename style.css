@@ -1,24 +1,48 @@
 body {
     margin: 0;
     font-family: 'Caveat', cursive;
-    background: linear-gradient(#ffe6f0, #fff);
-    color: #444;
+    background: linear-gradient(180deg, #fff1f5, #fdf7ff);
+    color: #333;
     text-align: center;
 }
 
 section {
-    padding: 60px 20px;
+    padding: 40px 20px;
 }
 
 .hero {
-    background: #ff4d88;
+    background: linear-gradient(180deg, #ff758c, #ff7eb3);
+    backdrop-filter: blur(8px);
     color: white;
-    padding: 100px 20px;
+    padding: 120px 20px;
+    text-align: center;
+}
+
+.hero::before {
+    content: "❤ ❤ ❤ ❤ ❤ ❤ ❤ ❤ ❤ ❤ ❤ ❤";
+    position: absolute;
+    inset: 0;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.25);
+    line-height: 80px;
+    letter-spacing: 60px;
+    white-space: pre-wrap;
+    pointer-events: none;
+}
+
+.hero>* {
+    position: relative;
+    z-index: 1;
 }
 
 .hero h1 {
     font-size: 3rem;
     font-family: 'Caveat', cursive;
+}
+
+h1,
+h2 {
+    text-shadow: 0 0 12px rgba(255, 120, 150, 0.35);
 }
 
 .message,
@@ -55,8 +79,15 @@ ul li {
 }
 
 .final {
-    background: #ffb3cc;
-    border-radius: 30px;
+    width: 100%;
+    max-width: 100%;
+    margin: 80px 0 0 0;
+    border-radius: 0;
+    text-align: center;
+    padding: 70px 20px;
+
+    background: linear-gradient(135deg, #ffe0ec, #fff6fa);
+    box-shadow: none;
 }
 
 .music-hint {
@@ -124,13 +155,13 @@ ul li {
 
 .hidden {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 1s ease;
+    transform: translateY(40px) scale(0.98);
 }
 
 .show {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+    transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .hero h1 {
@@ -186,7 +217,26 @@ ul li {
     text-align: right;
     font-size: 1.5rem;
     opacity: 0.95;
+    padding-right: 60px;
     text-shadow: 0 0 8px rgba(255, 105, 180, 0.4);
+}
+
+.signature {
+    animation: pulse 2.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .image-heart {
@@ -214,5 +264,62 @@ ul li {
 }
 
 .memory {
-    position: relative;
+    padding: 8px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.memory::after {
+    content: "♥";
+    position: absolute;
+    bottom: 10px;
+    right: 14px;
+    opacity: 0.2;
+}
+
+.memory:hover {
+    transform: translateY(-6px) rotate(-0.5deg);
+}
+
+@media (max-width: 600px) {
+    section {
+        padding: 30px 20px;
+        margin: 40px 15px;
+    }
+}
+
+.memory {
+    border: 2px solid rgba(255, 182, 193, 0.5);
+}
+
+.memory:hover {
+    box-shadow:
+        0 0 0 6px rgba(255, 182, 193, 0.15),
+        0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.heart {
+    position: fixed;
+    bottom: -40px;
+    animation: floatUp linear forwards;
+    opacity: 0.9;
+    pointer-events: none;
+    text-shadow: 0 5px 15px rgba(255, 77, 136, 0.35);
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(0.8);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-110vh) scale(1.3);
+        opacity: 0;
+    }
 }

@@ -14,7 +14,7 @@
     </div>
 
     <audio id="bgMusic" loop>
-        <source src="bg.mp3" type="audio/mpeg">
+        <source src="bg1.mp3" type="audio/mpeg">
     </audio>
 
     <script>
@@ -67,39 +67,63 @@
     </script>
 
     <script>
-        const memories = document.querySelectorAll(".memory");
+        const heartColors = [
+            "#ff4d6d", // pink red
+            "#ff85a1", // soft pink
+            "#ffb3c6", // blush
+            "#ff6f91", // rose
+            "#f72585", // neon pink
+            "#ffd166"  // golden love
+        ];
 
-        const imageObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !entry.target.dataset.shown) {
-                    entry.target.dataset.shown = "true";
+        const heartEmojis = [
+            "❤️",   // classic red
+            "💖",   // sparkling pink
+            "💘",   // cupid
+            "💗",   // growing pink
+            "💝",   // gift heart
+            "🤍",   // white heart
+            "💙",   // blue heart
+            "💎",   // soft blue accent (optional)
+        ];
 
-                    // create hearts
-                    for (let i = 0; i < 3; i++) {
-                        const heart = document.createElement("span");
-                        heart.innerText = "❤️";
-                        heart.className = "image-heart";
+        setInterval(() => {
+            const heartsCount = 3;
 
-                        heart.style.left = Math.random() * 60 + 20 + "%";
-                        heart.style.bottom = "20px";
-                        heart.style.fontSize = (Math.random() * 10 + 12) + "px";
+            for (let i = 0; i < heartsCount; i++) {
+                const heart = document.createElement("div");
 
-                        entry.target.appendChild(heart);
-                        setTimeout(() => heart.remove(), 2500);
-                    }
-                }
-            });
-        }, { threshold: 0.6 });
+                // Random emoji
+                heart.innerText = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+                heart.className = "heart";
 
-        memories.forEach(mem => imageObserver.observe(mem));
+                // Random position
+                heart.style.left = Math.random() * 100 + "vw";
+
+                // Random size
+                const size = Math.random() * 20 + 18;
+                heart.style.fontSize = size + "px";
+
+                // Random color
+                heart.style.color = heartColors[Math.floor(Math.random() * heartColors.length)];
+
+                // Random animation duration
+                heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+
+                document.body.appendChild(heart);
+
+                setTimeout(() => heart.remove(), 8000);
+            }
+        }, 1800);
     </script>
 
 
 
 
 
+
     <section class="hero">
-        <h1>Hi Molu ❤️</h1>
+        <h1>Hi My Love ❤️</h1>
         <p>This little world is made with all my love, just for you</p>
     </section>
 
@@ -131,7 +155,7 @@
     </section>
 
     <section class="memories">
-        <h2>📸 Our Memories</h2>
+        <h2>📸 Moments that became memories, memories that became us</h2>
         <div class="gallery">
             <div class="memory"><img src="IMG1.JPG"></div>
             <div class="memory"><img src="IMG2.PNG"></div>
@@ -207,7 +231,7 @@
 
     <section class="final">
         <h2>❤️ Happy Valentine’s Day</h2>
-        <p>I choose you. Always.</p>
+        <p>Today, tomorrow, and every lifetime — I choose you.</p>
         <p class="signature">
             Forever and always,<br>
             Your kakku ❤️
